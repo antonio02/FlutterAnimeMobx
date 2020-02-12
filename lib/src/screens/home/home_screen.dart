@@ -30,10 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 childAspectRatio: 10 / 16,
               ),
               itemBuilder: (context, index) {
-                return Card(
-                  elevation: 4,
-                  child: AnimeCard(_animeStore.animes[index]),
-                );
+                return AnimeCard(_animeStore.animes[index]);
               },
             );
           } else {
