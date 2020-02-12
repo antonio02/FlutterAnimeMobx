@@ -1,0 +1,24 @@
+name: mobx_teste
+description: A new Flutter project.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # MobX
+  mobx: ^1.0.2
+  flutter_mobx: ^1.0.1
+  mobx_codegen: ^1.0.1
+  build_runner: ^1.7.4
+  # Dio
+  dio: ^3.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
