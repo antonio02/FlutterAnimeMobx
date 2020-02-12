@@ -17,37 +17,42 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Observer(
-        builder: (_) {
-          if (_animeStore.fetching) {
-            return Center(child: CircularProgressIndicator());
-          }
-          if (_animeStore.animes.isNotEmpty) {
-            return GridView.builder(
-              itemCount: _animeStore.animes.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 10 / 16,
-              ),
-              itemBuilder: (context, index) {
-                return AnimeCard(_animeStore.animes[index]);
-              },
-            );
-          } else {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(Icons.cloud_off, size: 72, color: Colors.grey),
-                  Text(
-                    'No data (Click to fetch)',
-                    style: TextStyle(fontSize: 24, color: Colors.grey),
-                  )
-                ],
-              ),
-            );
-          }
-        },
+      body: SafeArea(
+        child: Observer(
+          builder: (_) {
+            if (_animeStore.fetching) {
+              return Center(child: CircularProgressIndicator());
+            }
+            if (_animeStore.animes.isNotEmpty) {
+              return GridView.builder(
+                padding: EdgeInsets.all(8),
+                itemCount: _animeStore.animes.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 10 / 16,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                ),
+                itemBuilder: (context, index) {
+                  return AnimeCard(_animeStore.animes[index]);
+                },
+              );
+            } else {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.cloud_off, size: 72, color: Colors.grey),
+                    Text(
+                      'No data (Click to fetch)',
+                      style: TextStyle(fontSize: 24, color: Colors.grey),
+                    )
+                  ],
+                ),
+              );
+            }
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _animeStore.fetchFromKitsu(),
