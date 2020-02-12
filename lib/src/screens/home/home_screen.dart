@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import 'package:mobx_teste/src/stores/anime_store.dart';
-import 'package:mobx_teste/src/widgets/common/anime_card.dart';
+import 'package:flutter_anime_mobx/src/stores/anime_store.dart';
+import 'package:flutter_anime_mobx/src/widgets/common/anime_card.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';

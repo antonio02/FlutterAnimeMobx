@@ -1,5 +1,5 @@
-name: mobx_teste
-description: A new Flutter project.
+name: flutter_anime_mobx
+description: MobX with Kitsu API.
 version: 1.0.0+1
 
 environment:

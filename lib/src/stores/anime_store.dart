@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 
-import 'package:mobx_teste/src/models/anime.dart';
-import 'package:mobx_teste/src/repositories/kitsu_repository.dart';
+import 'package:flutter_anime_mobx/src/models/anime.dart';
+import 'package:flutter_anime_mobx/src/repositories/kitsu_repository.dart';
 
 part 'anime_store.g.dart';
 

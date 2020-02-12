@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:mobx_teste/src/models/anime.dart';
+import 'package:flutter_anime_mobx/src/models/anime.dart';
 
 class KitsuRepository {
   final String apiURL = 'https://kitsu.io/api/edge';
