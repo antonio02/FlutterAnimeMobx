@@ -1,4 +1,4 @@
-package com.teste.mobx_teste
+package com.teste.flutter_anime_mobx
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
