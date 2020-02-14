@@ -9,7 +9,7 @@ class Anime {
     return Anime(
       id: json['id'],
       title: json['attributes']['canonicalTitle'],
-      coverUrl: json['attributes']['posterImage']['small'],
+      coverUrl: json['attributes']['posterImage']['large'],
     );
   }
 }

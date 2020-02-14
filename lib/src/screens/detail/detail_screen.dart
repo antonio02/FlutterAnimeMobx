@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_anime_mobx/src/models/anime.dart';
 
-class DetailScreen extends StatefulWidget {
+class DetailScreenArguments {
   final Anime anime;
 
-  DetailScreen(this.anime);
+  DetailScreenArguments(this.anime);
+}
+
+class DetailScreen extends StatefulWidget {
+  static const String routeName = '/detail';
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -14,6 +18,8 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
+    final DetailScreenArguments args =
+        ModalRoute.of(context).settings.arguments;
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -26,12 +32,12 @@ class _DetailScreenState extends State<DetailScreen> {
               flexibleSpace: Stack(
                 children: <Widget>[
                   Hero(
-                    tag: 'image${widget.anime.id}',
+                    tag: 'image${args.anime.id}',
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: NetworkImage(widget.anime.coverUrl),
+                          image: NetworkImage(args.anime.coverUrl),
                         ),
                       ),
                     ),
@@ -49,16 +55,20 @@ class _DetailScreenState extends State<DetailScreen> {
                       children: <Widget>[
                         IconButton(
                           onPressed: () => Navigator.pop(context),
-                          icon: Icon(Icons.arrow_back, color: Colors.white,),
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
                         ),
                         Expanded(
                           child: SingleChildScrollView(
                             padding: EdgeInsets.only(right: 8),
                             scrollDirection: Axis.horizontal,
                             child: Text(
-                              widget.anime.title,
+                              args.anime.title,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(color: Colors.white, fontSize: 22),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 22),
                             ),
                           ),
                         ),
@@ -71,7 +81,7 @@ class _DetailScreenState extends State<DetailScreen> {
           ];
         },
         body: Center(
-          child: Text("Sample Text"),
+          child: Text('Sample Text'),
         ),
       ),
     );

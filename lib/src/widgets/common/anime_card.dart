@@ -11,9 +11,10 @@ class AnimeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push(
+      onTap: () => Navigator.pushNamed(
         context,
-        MaterialPageRoute(builder: (context) => DetailScreen(anime)),
+        DetailScreen.routeName,
+        arguments: DetailScreenArguments(anime),
       ),
       child: Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
