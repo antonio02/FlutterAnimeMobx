@@ -5,7 +5,7 @@ class Anime {
 
   Anime({this.id, this.title, this.coverUrl});
 
-  factory Anime.fromKitsuJson(json) {
+  factory Anime.fromKitsu(Map<String, dynamic> json) {
     return Anime(
       id: json['id'],
       title: json['attributes']['canonicalTitle'],

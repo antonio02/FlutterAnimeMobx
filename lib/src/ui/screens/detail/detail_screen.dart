@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_anime_mobx/src/models/anime.dart';
+import 'package:flutter_anime_mobx/src/core/models/anime.dart';
 
 class DetailScreenArguments {
   final Anime anime;

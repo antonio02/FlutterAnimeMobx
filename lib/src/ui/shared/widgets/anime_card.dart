@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_anime_mobx/src/models/anime.dart';
-import 'package:flutter_anime_mobx/src/screens/detail/detail_screen.dart';
+import 'package:flutter_anime_mobx/src/core/models/anime.dart';
+import 'package:flutter_anime_mobx/src/ui/screens/detail/detail_screen.dart';
 
 class AnimeCard extends StatelessWidget {
   final Anime anime;
