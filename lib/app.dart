@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_anime_mobx/src/ui/screens/detail/detail_screen.dart';
 import 'package:flutter_anime_mobx/src/ui/screens/home/home_screen.dart';
 
@@ -14,6 +13,8 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter App',
       initialRoute: '/home',
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
       routes: routes,
     );
   }

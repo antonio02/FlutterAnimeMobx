@@ -1,58 +1,70 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_anime_mobx/src/core/models/anime.dart';
-import 'package:flutter_anime_mobx/src/ui/screens/detail/detail_screen.dart';
 
 class AnimeCard extends StatelessWidget {
-  final Anime anime;
+  final Anime _anime;
+  final Widget _leading;
+  final bool _wrap;
 
-  AnimeCard(this.anime);
+  AnimeCard(this._anime, {wrap = false, leading})
+      : this._leading = leading ?? const SizedBox.shrink(),
+        this._wrap = wrap;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => Navigator.pushNamed(
-        context,
-        DetailScreen.routeName,
-        arguments: DetailScreenArguments(anime),
-      ),
+    return Theme(
+      data: ThemeData.dark(),
       child: Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        margin: EdgeInsets.all(0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        margin: EdgeInsets.zero,
         child: Stack(
           children: <Widget>[
-            Hero(
-              tag: 'image${anime.id}',
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(anime.coverUrl),
-                  ),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(_anime.coverUrl),
                 ),
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
               alignment: Alignment.bottomLeft,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
+              decoration: const BoxDecoration(
+                gradient: const LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: <Color>[Colors.transparent, Colors.black],
                 ),
               ),
-              child: Text(
-                anime.title,
-                style: TextStyle(color: Colors.white, fontSize: 18),
+              child: Row(
+                children: <Widget>[
+                  _leading,
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: _builTitle(),
+                    ),
+                  ),
+                ],
               ),
             )
           ],
         ),
       ),
     );
+  }
+
+  Widget _builTitle() {
+    return _wrap
+        ? SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(_anime.title),
+          )
+        : Text(
+            _anime.title,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          );
   }
 }

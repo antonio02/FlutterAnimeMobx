@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_anime_mobx/src/core/models/anime.dart';
+import 'package:flutter_anime_mobx/src/ui/shared/widgets/anime_card.dart';
 
 class DetailScreenArguments {
   final Anime anime;
@@ -18,64 +18,28 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
-    final DetailScreenArguments args =
-        ModalRoute.of(context).settings.arguments;
+    DetailScreenArguments _args = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
+              backgroundColor: Colors.transparent,
               expandedHeight: 200,
               automaticallyImplyLeading: false,
               floating: false,
               pinned: true,
-              flexibleSpace: Stack(
-                children: <Widget>[
-                  Hero(
-                    tag: 'image${args.anime.id}',
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(args.anime.coverUrl),
-                        ),
-                      ),
-                    ),
+              flexibleSpace: Hero(
+                tag: 'image${_args.anime.id}',
+                child: AnimeCard(
+                  _args.anime,
+                  wrap: true,
+                  leading: IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.arrow_back),
                   ),
-                  Container(
-                    alignment: Alignment.bottomLeft,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: <Color>[Colors.transparent, Colors.black],
-                      ),
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        IconButton(
-                          onPressed: () => Navigator.pop(context),
-                          icon: Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Expanded(
-                          child: SingleChildScrollView(
-                            padding: EdgeInsets.only(right: 8),
-                            scrollDirection: Axis.horizontal,
-                            child: Text(
-                              args.anime.title,
-                              overflow: TextOverflow.ellipsis,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 22),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                ),
               ),
             ),
           ];
